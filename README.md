@@ -1,22 +1,22 @@
 # Ohjelmointi 3 projektin tietovarasto
 
-Tämä on ryhmäsi yhteinen tietovarasto projektin tekemistä varten. Huomaa, että nyt
-projektissa on useita jäseniä ja tekemisesi vaikuttaa muiden työhön. Liitä harjoitustyön
-materiaalien etätietovarasto (https://course-gitlab.tuni.fi/compcs140-spring2023/group_template_project)
+ Liitä harjoitustyön materiaalien etätietovarasto (https://course-gitlab.tuni.fi/compcs140-spring2023/group_template_project)
 paikalliseen tietovarastoosi remoteksi, jotta voit ladata kurssin tarjoamaa materiaalia.
 
-JSON-tiedostoja esimerkiksi opintosuunnitelmatietojen lukemiseen on tarjolla tietovarastossa kansiossa json. Tiedosto json/modules/otm-3990be25-c9fd-4dae-904c-547ac11e8302.json on juuritason DegreeProgramme-moduuli.
+# Instructions for development
 
-Tätä tiedostoa saa (ja on hyväkin) muuttaa projektin aloittamisen jälkeen.
+## Style guide
 
-# Programming 3 project repository
+ All developers should use Checkstyle as their linter. Make sure that Checkstyle is set to [google_checks](https://checkstyle.sourceforge.io/google_style.html).
 
-This is the repository for implementing the course project for your group. Note that
-your project now has several members and what you do impacts other's work. Add the remote
-repository for the project material (https://course-gitlab.tuni.fi/compcs140-spring2023/group_template_project)
-as a remote to your local repository to fetch the code provided by the course.
+## Development workflow
 
-Some example JSON files are under the json subdirectory. The file json/modules/otm-3990be25-c9fd-4dae-904c-547ac11e8302.json
-is a root level DegreeProgramme module.
+ **Nothing is pushed to main, ever!**
 
-You are allowed (and probably should) make changes to this file after you have started your project.
+ Instead for each new feature always create an issue, then create a new branch and merge request relating to that issue.
+
+ Make you changes to the new branch. When done ask someone to look over your code and merge it.
+
+## CI / CD
+ 
+ Possible ci/cd configuration will be done at a later date.
