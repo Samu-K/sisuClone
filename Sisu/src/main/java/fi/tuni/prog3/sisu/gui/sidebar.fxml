@@ -1,1 +1,21 @@
 
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Navigation" />
+    <Separator />
+    <Button text="Home" />
+    <Button text="Settings" />
+    <Button text="Help" />
+    <Separator />
+    <Label text="Search" />
+    <TextField fx:id="searchTextField" />
+    <Button text="Go" />
+</VBox>
+
