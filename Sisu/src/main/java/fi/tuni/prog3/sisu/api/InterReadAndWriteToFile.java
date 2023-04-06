@@ -5,8 +5,6 @@
 
 package fi.tuni.prog3.sisu.api;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * Interface with methods to read from a file and write to a file.
