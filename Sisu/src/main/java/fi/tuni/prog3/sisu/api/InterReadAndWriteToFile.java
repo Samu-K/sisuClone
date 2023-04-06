@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit  template
  */
 
-package fi.tuni.prog3.sisu;
+package fi.tuni.prog3.sisu.api;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
