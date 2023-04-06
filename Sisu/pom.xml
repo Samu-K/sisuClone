@@ -65,7 +65,7 @@
 					<artifactId>javafx-maven-plugin</artifactId>
 					<version>0.0.4</version>
 					<configuration>
-						<mainClass>fi.tuni.prog3.sisu.Sisu</mainClass>
+						<mainClass>fi.tuni.prog3.sisu.backend.Sisu</mainClass>
 					</configuration>
 					<executions>
 						<execution>
