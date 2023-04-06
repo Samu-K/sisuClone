@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit template
  */
 
-package fi.tuni.prog3.sisu;
+package fi.tuni.prog3.sisu.backend;
 
 /**
  *An abstract class for storing information on Modules and Courses.

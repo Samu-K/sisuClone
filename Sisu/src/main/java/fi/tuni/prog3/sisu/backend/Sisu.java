@@ -1,4 +1,4 @@
-package fi.tuni.prog3.sisu;
+package fi.tuni.prog3.sisu.backend;
 
 import javafx.application.Application;
 import javafx.application.Platform;
