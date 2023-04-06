@@ -1,31 +1,29 @@
 package fi.tuni.prog3.sisu.backend;
 
+import java.net.URL;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
 /**
- * JavaFX Sisu.
+ * Main sisu class.
  */
 public class Sisu extends Application {
+  public static void main(String[] args) {
+    launch(args);
+  }
 
   @Override
-  public void start(Stage stage) {
-      
-  }
+  public void start(Stage primaryStage) throws Exception {
+    FXMLLoader loader = new FXMLLoader();
+    URL url = new URL("file:src/main/java/fi/tuni/prog3/sisu/gui/studies.fxml");
+    loader.setLocation(url);
+    BorderPane vbox = loader.<BorderPane>load();
+    Scene scene = new Scene(vbox);
 
-  public static void main(String[] args) {
-    launch();
+    primaryStage.setScene(scene);
+    primaryStage.show();
   }
-   
 }
