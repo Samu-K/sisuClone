@@ -26,5 +26,5 @@ public class Sisu extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
   }
->>>>>>> 13251da (Changed location for files)
+
 }
