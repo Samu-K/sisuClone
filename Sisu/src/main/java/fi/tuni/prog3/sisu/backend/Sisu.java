@@ -24,6 +24,7 @@ public class Sisu extends Application {
     Scene scene = new Scene(vbox);
 
     primaryStage.setScene(scene);
+    primaryStage.setTitle("SIM");
     primaryStage.show();
   }
 

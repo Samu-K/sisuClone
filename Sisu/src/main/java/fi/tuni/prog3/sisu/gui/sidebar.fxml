@@ -3,17 +3,38 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Pos?>
 
-<VBox spacing="10" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-    <Label text="Navigation" />
-    <Separator />
-    <Button text="Home" />
-    <Button text="Settings" />
-    <Button text="Help" />
-    <Separator />
-    <Label text="Search" />
-    <TextField fx:id="searchTextField" />
-    <Button text="Go" />
-</VBox>
+<StackPane style="-fx-background-color: #141218;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" prefWidth="220" id="sidebar">
+  <children>
+    <VBox spacing="20">
+      <Button text="Tiedot" 
+        maxWidth="1.7976931348623157E308" 
+        prefHeight="55"
+        stylesheets="file:src/resources/css/sideBarButton.css"/> 
+      <Button text="Opinnot" 
+        maxWidth="1.7976931348623157E308" 
+        prefHeight="55"
+        stylesheets="file:src/resources/css/sideBarButton.css"/>
+
+      <Button text="Aikataulu" 
+        maxWidth="1.7976931348623157E308" 
+        prefHeight="55"
+        stylesheets="file:src/resources/css/sideBarButton.css"/>
+    </VBox>
+
+    <Button text="Kirjaudu ulos" 
+      StackPane.alignment="BOTTOM_CENTER" 
+      maxWidth="1.7976931348623157E308" 
+      prefHeight="55"
+      stylesheets="file:src/resources/css/sideBarButton.css"/>
+
+
+  </children>
+</StackPane>
 

@@ -16,15 +16,7 @@
     <left>
         <fx:include source="sidebar.fxml" />
     </left>
-    <top>
-        <MenuBar>
-            <Menu text="File">
-                <MenuItem text="Open" />
-                <MenuItem text="Save" />
-                <MenuItem text="Exit" />
-            </Menu>
-        </MenuBar>
-    </top>
+
     <padding>
         <Insets top="10" right="10" bottom="10" left="10" />
     </padding>
