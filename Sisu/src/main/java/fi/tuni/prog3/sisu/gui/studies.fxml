@@ -8,20 +8,10 @@
 <?import javafx.scene.control.TreeItem?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" fx:controller="file:src/main/java/fi/tuni/prog3/sisu/backend/StudeisController.java">
+<BorderPane style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" fx:controller="fi.tuni.prog3.sisu.backend.StudiesController">
     <center>
-        <StackPane style="-fx-background-color: #4d4d4d;">
-          <children>
-            <TreeView stylesheets="file:src/resources/css/courseView.css" id="courseView">
-              <TreeItem value="test">
-                <children>
-                  <TreeItem value="Node1" />
-                  <TreeItem value="Node2"/>
-                  <TreeItem value="Node3"/>
-                </children>
-              </TreeItem>
-            </TreeView>
-          </children>
+        <StackPane style="-fx-background-color: #4d4d4d;" fx:id="mainPane">
+
         </StackPane>
     </center>
     <left>

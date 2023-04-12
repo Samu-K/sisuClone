@@ -37,6 +37,7 @@
           <artifactId>commons-lang3</artifactId>
           <version>3.12.0</version>
         </dependency>
+
     </dependencies>
 	<build>
 		<pluginManagement>
@@ -74,8 +75,9 @@
                           <mainClass>fi.tuni.prog3.sisu.backend.Sisu</mainClass>
                         </manifest>
                       </archive>
+
 					</configuration>
-				</plugin>
+                </plugin>
 				<plugin>
 					<groupId>org.openjfx</groupId>
 					<artifactId>javafx-maven-plugin</artifactId>
