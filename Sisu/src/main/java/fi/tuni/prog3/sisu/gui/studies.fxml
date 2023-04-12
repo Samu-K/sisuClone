@@ -7,12 +7,19 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.control.TreeItem?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" fx:controller="fi.tuni.prog3.sisu.backend.StudiesController">
     <center>
-        <StackPane style="-fx-background-color: #4d4d4d;" fx:id="mainPane">
+      <StackPane style="-fx-background-color: #4d4d4d;" fx:id="mainPane">
+        <VBox fx:id="courseBox">
 
-        </StackPane>
+          <HBox 
+            id="degreeCont" 
+            fx:id="degreeCont"
+            />
+        </VBox>
+      </StackPane>
     </center>
     <left>
         <fx:include source="sidebar.fxml" />
