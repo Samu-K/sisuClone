@@ -27,12 +27,23 @@ public class StudiesController {
 
   @FXML
   private void initialize() {
-    TreeItem<String> root = new TreeItem<String>("Root");
-    root.getChildren().addAll(
-        new TreeItem<String>("Item 1"),
-        new TreeItem<String>("Item 2")
+    TreeItem<String> root1 = new TreeItem<String>("Yhteiset opinnot");
+    root1.getChildren().addAll(
+        new TreeItem<String>("Orientoivat opinnot"),
+        new TreeItem<String>("Tilastotieteen johdatuskurssi"),
+        new TreeItem<String>("Johdatus yliopistomatematiikkaan")
     );
-    TreeView<String> courseView = new TreeView<String>(root);
+    TreeItem<String> root2 = new TreeItem<>("Perusopinnot");
+    root2.getChildren().addAll(
+        new TreeItem<String>("Ohjelmointi 1"),
+        new TreeItem<String>("Ohjelmointi 2"),
+        new TreeItem<String>("Ohjelmointi 3")
+    );
+    ArrayList<TreeItem<String>> roots = new ArrayList<>();
+    roots.add(root1);
+    roots.add(root2);
+    TreeView<String> courseView = createMultiNodeTreeView(roots);
+    courseView.getStylesheets().add("file:src/resources/css/courseView.css");
     courseBox.getChildren().add(courseView);
 
     // create the actual dropdown menu
@@ -73,6 +84,17 @@ public class StudiesController {
     dropDown.getStylesheets().add("file:src/resources/css/dropdown.css");
     
     return dropDown;
+  }
+
+  private static TreeView<String> createMultiNodeTreeView(ArrayList<TreeItem<String>> roots) {
+    TreeItem<String> dummyRoot = new TreeItem<>();
+    for (TreeItem<String> root : roots) {
+      dummyRoot.getChildren().add(root);
+    }
+    TreeView<String> tree = new TreeView<>(dummyRoot);
+    tree.setShowRoot(false);
+
+    return tree;
   }
 
 }
