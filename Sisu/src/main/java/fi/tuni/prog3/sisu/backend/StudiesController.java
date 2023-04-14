@@ -1,30 +1,31 @@
 package fi.tuni.prog3.sisu.backend;
 
+import fi.tuni.prog3.sisu.backend.AutoCompleteComboBox.HideableItem;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.layout.StackPane;
-import javafx.util.StringConverter;
 import javafx.scene.layout.HBox;
-import javafx.scene.control.ComboBox;
-import java.util.Arrays;
-import java.util.ArrayList;
-import fi.tuni.prog3.sisu.backend.AutoCompleteComboBox.HideableItem;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
+
 
 /**
  * Controller class for studies.fxml.
  */
 public class StudiesController {
 
-  @FXML
-  private StackPane mainPane;
-  @FXML
-  private HBox degreeCont;
-  @FXML
-  private VBox courseBox;
+  @FXML private StackPane mainPane;
+  @FXML private HBox degreeCont;
+  @FXML private VBox courseBox;
 
+  /**
+   * Initialization function for studies.fxml. 
+   * This gets ran whenever studies.fxml is loaded.
+   */
   @FXML
   private void initialize() {
     TreeItem<String> root1 = new TreeItem<String>("Yhteiset opinnot");
@@ -56,6 +57,13 @@ public class StudiesController {
     
   }
 
+  /**
+   * Set up our autofillable combobox.
+   * 
+   *
+   * @param items the items that we want to fill our combobox with
+   * @return a filled out autocomplete combobox
+   */
   private static ComboBox<HideableItem<String>> setupCombo(ArrayList<String> items) {
     ComboBox<HideableItem<String>> dropDown;
 
@@ -86,6 +94,13 @@ public class StudiesController {
     return dropDown;
   }
 
+  /**
+   * Create a treeview with multiple root nodes.
+   *
+   *
+   * @param roots an arraylist filled with treeitems, that work as root nodes
+   * @return a treeview with each given treeitem as a root node
+   */
   private static TreeView<String> createMultiNodeTreeView(ArrayList<TreeItem<String>> roots) {
     TreeItem<String> dummyRoot = new TreeItem<>();
     for (TreeItem<String> root : roots) {

@@ -29,4 +29,4 @@ public class Sisu extends Application {
     primaryStage.show();
   }
 
-  }
+}
