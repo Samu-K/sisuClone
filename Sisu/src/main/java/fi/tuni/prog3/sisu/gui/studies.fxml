@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.control.TreeItem?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" fx:controller="fi.tuni.prog3.sisu.backend.StudiesController">
+    <center>
+      <StackPane style="-fx-background-color: #4d4d4d;" fx:id="mainPane">
+        <VBox fx:id="courseBox">
+
+          <HBox 
+            id="degreeCont" 
+            fx:id="degreeCont"
+            />
+        </VBox>
+      </StackPane>
+    </center>
+    <left>
+        <fx:include source="sidebar.fxml" />
+    </left>
+
+</BorderPane>
+

@@ -14,7 +14,12 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>13</version>
-        </dependency>
+          </dependency>
+          <dependency>
+             <groupId>org.openjfx</groupId>
+             <artifactId>javafx-fxml</artifactId>
+             <version>13</version>
+         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -26,7 +31,13 @@
 		  <artifactId>maven-checkstyle-plugin</artifactId>
 		  <version>3.2.1</version>
 		  <type>maven-plugin</type>
-    	</dependency>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+          <version>3.12.0</version>
+        </dependency>
+
     </dependencies>
 	<build>
 		<pluginManagement>
@@ -57,9 +68,16 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.8.0</version>
 					<configuration>
-						<release>11</release>
+                      <release>11</release>
+                      <archive>
+                        <manifest>
+                          <addClasspath>true</addClasspath>
+                          <mainClass>fi.tuni.prog3.sisu.backend.Sisu</mainClass>
+                        </manifest>
+                      </archive>
+
 					</configuration>
-				</plugin>
+                </plugin>
 				<plugin>
 					<groupId>org.openjfx</groupId>
 					<artifactId>javafx-maven-plugin</artifactId>
@@ -108,6 +126,20 @@
 					</executions>
 				</plugin>
 			</plugins>
-		</pluginManagement>
+          </pluginManagement>
+          <resources>
+            <resource>
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.fxml</include>
+              </includes>
+            </resource>
+            <resource>
+              <directory>src/resources</directory>
+              <includes>
+                <include>**/*.css</include>
+              </includes>
+            </resource> 
+          </resources>
     </build>
 </project>
