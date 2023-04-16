@@ -1,0 +1,26 @@
+#headerLabel {
+  -fx-font-size: 52;
+  -fx-text-fill: #322F37;
+  -fx-padding: 30 0 0 0;
+}
+
+#subLabel {
+  -fx-font-size: 32;
+  -fx-text-fil: #322F37;
+  -fx-padding: 10 0 0 0;
+}
+
+.text-field {
+  -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;
+  -fx-pref-height: 40;
+}
+
+.button {
+  -fx-border-radius: 10 10 10 10;
+  -fx-background-radius: 10 10 10 10;
+  -fx-pref-height: 50;
+  -fx-pref-width: 270;
+  -fx-background-color: #277D2F;
+  -fx-padding: 0 0 30 0;
+}
