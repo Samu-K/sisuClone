@@ -18,5 +18,9 @@ paikalliseen tietovarastoosi remoteksi, jotta voit ladata kurssin tarjoamaa mate
  Make you changes to the new branch. When done ask someone to look over your code and merge it.
 
 ## CI / CD
- 
- Possible ci/cd configuration will be done at a later date.
+
+Each merge request gets built. If the code does not compile, or does not pass tests, the merge is rejected.
+
+On top of this, each merge request gets checked with checkstyle. If any stylistic errors rise up, the merge gets rejected.
+
+**CI/CD is currently not working, due to there being no assigned runners. Course staff have been contacted about this**
