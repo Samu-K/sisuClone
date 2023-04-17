@@ -18,12 +18,12 @@ public class Sisu extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     FXMLLoader loader = new FXMLLoader(); 
-    URL stdUrl = new URL("file:src/main/java/fi/tuni/prog3/sisu/gui/studies.fxml");
+    URL stdUrl = new URL("file:src/main/java/fi/tuni/prog3/sisu/gui/start.fxml");
     loader.setLocation(stdUrl);
 
     BorderPane main = loader.<BorderPane>load();
     
-    Scene scene = new Scene(main);
+    Scene scene = new Scene(main, 330, 650);
     primaryStage.setScene(scene);
     primaryStage.setTitle("SIM");
     primaryStage.show();
