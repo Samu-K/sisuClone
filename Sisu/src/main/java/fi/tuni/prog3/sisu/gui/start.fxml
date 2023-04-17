@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
 
 <BorderPane style="-fx-background-color: #1665A6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" stylesheets="file:src/resources/css/start.css">
   <top>
@@ -34,6 +35,9 @@
 
   <bottom>
     <HBox alignment="TOP_CENTER">
+      <BorderPane.margin>
+        <Insets bottom="25.0" left="10" right="10" top="0"/>
+      </BorderPane.margin>
       <Button text="Continue ->"/>
     </HBox>
   </bottom>
