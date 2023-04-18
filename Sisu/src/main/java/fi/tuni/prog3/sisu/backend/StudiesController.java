@@ -57,7 +57,7 @@ public class StudiesController {
     ComboBox<HideableItem<String>> degreeDropDown = 
         setupCombo(new ArrayList<String>(degreeProgrammes.keySet()));
 
-    degreeDropDown.setPromptText("Degree programme...");
+    degreeDropDown.setPromptText("Search for Degree Programmes...");
     // add that menu to our container
     degreeCont.getChildren().add(degreeDropDown);
     
