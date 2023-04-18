@@ -21,12 +21,33 @@ public class StudyModule extends DegreeModule {
         JsonObject childJsonObject = Interface.getDegreeModuleById(childGroupId);
         // TODO: Build the object in ObjectBuilders class
         // Create a mock object for now
-        DegreeModule childModule = new Course("Johdatus todennäköisyyslaskentaan", "MATH.APP.210", "tut-xxx-xxx-xxx", 5, true, false); // = ObjectBuilders.buildDegreeModule(childJsonObject);
+        DegreeModule childModule = new Course("Johdatus todennäköisyyslaskentaan", "", "tut-xxx-xxx-xxx", 5, true, false); // = ObjectBuilders.buildDegreeModule(childJsonObject);
         childModules.add(childModule);
       }
       childrenHaveBeenAdded = true;
     }
   }
+ 
+  private ArrayList<Course> getCourses() {
+    ArrayList<Course> courses = new ArrayList<Course>();
+    for (DegreeModule dm : childModules) {
+      if (dm instanceof Course) {
+        courses.add((Course) dm);
+      }
+    }
+    return courses;
+  }
+
+  private ArrayList<StudyModule> getSubModules() {
+    ArrayList<StudyModule> subModules = new ArrayList<StudyModule>();
+    for (DegreeModule dm : childModules) {
+      if (dm instanceof StudyModule) {
+        subModules.add((StudyModule) dm);
+      }
+    }
+    return subModules;
+  }
+
 
   /**
    * A constructor for initializing the member variables.
@@ -44,36 +65,6 @@ public class StudyModule extends DegreeModule {
     
     this.isMandatory = isMandatory;
     this.childGroupIds = childGroupIds;
-  }
-  
-  /**
-   * Returns courses under this StudyModule.
-
-   * @return ArrayList of courses under this StudyModule.
-   */
-  public ArrayList<Course> getCourses() {
-    ArrayList<Course> courses = new ArrayList<Course>();
-    for (DegreeModule dm : childModules) {
-      if (dm instanceof Course) {
-        courses.add((Course) dm);
-      }
-    }
-    return courses;
-  }
-
-  /**
-   * Returns StudyModules under this StudyModule.
-
-   * @return ArrayList of StudyModules under this StudyModule.
-   */
-  public ArrayList<StudyModule> getSubModules() {
-    ArrayList<StudyModule> subModules = new ArrayList<StudyModule>();
-    for (DegreeModule dm : childModules) {
-      if (dm instanceof StudyModule) {
-        subModules.add((StudyModule) dm);
-      }
-    }
-    return subModules;
   }
 
   public boolean isMandatory() {
