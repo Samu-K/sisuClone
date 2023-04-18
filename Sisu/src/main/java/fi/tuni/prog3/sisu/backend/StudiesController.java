@@ -1,8 +1,9 @@
 package fi.tuni.prog3.sisu.backend;
 
+import fi.tuni.prog3.sisu.api.Interface;
 import fi.tuni.prog3.sisu.backend.AutoCompleteComboBox.HideableItem;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.TreeMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TreeItem;
@@ -21,6 +22,8 @@ public class StudiesController {
   @FXML private StackPane mainPane;
   @FXML private HBox degreeCont;
   @FXML private VBox courseBox;
+
+  private static TreeMap<String, String> degreeProgrammes;
 
   /**
    * Initialization function for studies.fxml. 
@@ -47,10 +50,13 @@ public class StudiesController {
     courseView.getStylesheets().add("file:src/resources/css/courseView.css");
     courseBox.getChildren().add(courseView);
 
+    // Get the degree programmes for the dropdown from the API
+    degreeProgrammes = Interface.getDegreeProgrammeNames();
+
     // create the actual dropdown menu
-    ComboBox<HideableItem<String>> degreeDropDown = setupCombo(
-        new ArrayList<String>(Arrays.asList("JOKU KIVA OPINTO", "LISÄÄ OPINTOJA", "car3"))
-    );
+    ComboBox<HideableItem<String>> degreeDropDown = 
+        setupCombo(new ArrayList<String>(degreeProgrammes.keySet()));
+
     degreeDropDown.setPromptText("Degree programme...");
     // add that menu to our container
     degreeCont.getChildren().add(degreeDropDown);
@@ -112,4 +118,18 @@ public class StudiesController {
     return tree;
   }
 
+  /**
+   * Get the group id of the degree programme that was selected. Clears the degreeProgrammes map
+   * because it is not used anymore in normal use.
+   *
+   * @param name the name of the degree programme
+   * @return the group id of the degree programme
+   */
+  public static String getDegreeProgrammeGroupId(String name) {
+    String groupId = degreeProgrammes.get(name);
+    degreeProgrammes.clear();
+    return groupId;
+  }
 }
+
+
