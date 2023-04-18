@@ -3,7 +3,7 @@ package fi.tuni.prog3.sisu.api;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import java.util.ArrayList;
+import java.util.TreeMap;
 
 
 /**
@@ -13,13 +13,14 @@ import java.util.ArrayList;
 public class DegreeProgrammeGetter {
     
   /**
-   * Returns a list of degree programmes names from the Sisu API.
+   * Returns a map of degree programmes names from the Sisu API. The keys are the names of the
+   * degree programmes and the values are the ids of the degree programmes.
    *
    * @param urlString URL for retrieving information from the Sisu API.
-   * @return ArrayList of degree programmes names.
+   * @return TreeMap of degree programmes names and ids.
    */
-  public static ArrayList<String> getDegreeProgramNamesFromApi(String urlString) {
-    ArrayList<String> degreeProgrammes = new ArrayList<String>();
+  public static TreeMap<String, String> getDegreeProgramNamesFromApi(String urlString) {
+    TreeMap<String, String> degreeProgrammes = new TreeMap<String, String>();
     
     JsonObject jsonObject = ApiJsonGetter.getJsonFromApi(urlString);
 
@@ -34,8 +35,11 @@ public class DegreeProgrammeGetter {
     for (JsonElement searchResult : searchResults) {
       JsonObject searchResultObject = searchResult.getAsJsonObject();
       String name = searchResultObject.get("name").getAsString();
-      degreeProgrammes.add(name);
+      String id = searchResultObject.get("groupId").getAsString();
+      degreeProgrammes.put(name, id);
     }
+
+    //THIS IS FOR TESTING PURPOSES
     System.out.println("DegreeProgrammes: " + degreeProgrammes.toString());
 
     return degreeProgrammes;
