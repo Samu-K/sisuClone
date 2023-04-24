@@ -6,6 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Controller for the sidebar.
+ */
 public class SidebarController {
   @FXML
   private Button tiedotButton;
