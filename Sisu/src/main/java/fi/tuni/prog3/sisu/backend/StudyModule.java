@@ -69,7 +69,7 @@ public class StudyModule extends DegreeModule {
 
   public boolean isMandatory() {
     return isMandatory;
-  }
+  } 
 
   /**
    * Returns all children of this StudyModule recursively. If StudyModule is mandatory, all children

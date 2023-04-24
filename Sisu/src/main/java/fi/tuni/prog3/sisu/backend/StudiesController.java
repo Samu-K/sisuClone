@@ -24,12 +24,17 @@ import javafx.util.StringConverter;
  */
 public class StudiesController {
 
+  @FXML private StackPane sidebarPlaceholder;
   @FXML private StackPane mainPane;
   @FXML private HBox degreeCont;
   @FXML private VBox courseBox;
 
   private static TreeMap<String, String> degreeProgrammes;
 
+  public void setSidebar(StackPane sidebar) {
+    sidebarPlaceholder.getChildren().setAll(sidebar);
+  }
+  
   /**
    * Initialization function for studies.fxml. 
    * This gets ran whenever studies.fxml is loaded.
