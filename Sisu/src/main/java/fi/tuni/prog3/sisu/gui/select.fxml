@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.control.TreeItem?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
+<?import org.controlsfx.control.ToggleSwitch?>
+
+<BorderPane style="-fx-background-color: #BBBBBB;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" stylesheets="file:src/resources/css/course.css" fx:controller="fi.tuni.prog3.sisu.backend.SelectController">
+  <center>
+    <StackPane fx:id="mainPane">
+        <BorderPane.margin>
+          <Insets bottom="20" left="20" right="20" top="20"/>
+        </BorderPane.margin>
+        <VBox fx:id="courseBox" spacing="15">
+        </VBox>
+      </StackPane>
+    </center>
+
+</BorderPane>

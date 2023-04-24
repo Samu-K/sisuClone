@@ -1,0 +1,9 @@
+.label {
+  -fx-text-fill: white;
+  -fx-font-size: 16;
+  -fx-padding: 35 15 15 35;
+}
+
+.toggle-switch {
+  -fx-padding: 0 15 15 0;
+}

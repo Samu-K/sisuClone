@@ -18,7 +18,7 @@ public class Sisu extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     FXMLLoader loader = new FXMLLoader(); 
-    URL stdUrl = new URL("file:src/main/java/fi/tuni/prog3/sisu/gui/studies.fxml");
+    URL stdUrl = new URL("file:src/main/java/fi/tuni/prog3/sisu/gui/select.fxml");
     loader.setLocation(stdUrl);
 
     BorderPane main = loader.<BorderPane>load();
