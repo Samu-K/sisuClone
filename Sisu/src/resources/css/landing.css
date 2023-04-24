@@ -1,0 +1,17 @@
+#infoBox {
+  -fx-padding: 30, 0, 0, 30;
+}
+
+#infoBox .label {
+  -fx-font-size: 18;
+  -fx-text-fill: #E6E0E9;
+}
+
+#headerBox {
+  -fx-padding: 30, 0, 0, 30;
+}
+
+#headerBox .label {
+  -fx-font-size: 26;
+  -fx-text-fill: #E6E0E9;
+}

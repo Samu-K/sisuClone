@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane style="-fx-background-color: #322F37;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" stylesheets="file:src/resources/css/landing.css">
+
+  <center>
+    <HBox spacing="60">
+      <VBox>
+        <HBox fx:id="headerBox">
+          <Label text="Omat tiedot"/>
+        </HBox>
+
+        <VBox spacing="30" fx:id="infoBox">
+          <HBox spacing="40">
+            <VBox>
+              <Label text="Etunimi" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+              <Label text="Maija"/>
+            </VBox>        
+
+            <VBox>
+              <Label text="Sukunimi" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+              <Label text="Mallikas"/>
+            </VBox>
+          </HBox>
+
+          <HBox spacing="40">
+            <VBox>
+              <Label text="Kieli" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+              <Label text="Suomi"/>
+            </VBox>        
+
+            <VBox>
+              <Label text="Osoite" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+              <Label text="Mallikatu 2"/>
+            </VBox>
+          </HBox>
+
+          <VBox>
+            <Label text="Opiskelijanumero" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+            <Label text="120129301293"/>
+          </VBox>
+          
+          <VBox>
+            <Label text="Sähköposti" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+            <Label text="esimerkki.osoite@maili.fi"/>
+          </VBox>
+        </VBox>
+      </VBox>
+      <VBox>
+        <HBox fx:id="headerBox">
+          <Label text="Opintojen tila"/>
+        </HBox>
+
+        <VBox spacing="30" fx:id="infoBox">
+          <VBox>
+            <Label text="Keskiarvo" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+            <Label text="3.6"/>
+          </VBox>
+          
+          <VBox>
+            <Label text="Tutkinto-ohjelma" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+            <Label text="Mallin koulutus"/>
+          </VBox>
+        </VBox>
+      </VBox>
+    </HBox>
+  </center>
+
+  <left>
+    <fx:include source="sidebar.fxml"/>
+  </left>
+</BorderPane>
