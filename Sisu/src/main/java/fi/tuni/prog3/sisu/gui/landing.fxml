@@ -73,8 +73,4 @@
       </VBox>
     </HBox>
   </center>
-
-  <left>
-    <fx:include source="sidebar.fxml"/>
-  </left>
 </BorderPane>

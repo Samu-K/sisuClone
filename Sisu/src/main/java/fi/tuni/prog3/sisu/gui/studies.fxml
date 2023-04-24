@@ -22,7 +22,7 @@
       </StackPane>
     </center>
     <left>
-        <fx:include source="sidebar.fxml" />
+        <StackPane fx:id="sidebarPlaceholder"/>
     </left>
 
 </BorderPane>
