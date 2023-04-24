@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane style="-fx-background-color: #1665A6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" stylesheets="file:src/resources/css/start.css">
+<BorderPane style="-fx-background-color: #1665A6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" stylesheets="/fi/tuni/prog3/sisu/resources/css/start.css">
   <top>
     <VBox alignment="TOP_CENTER">
       <Label 

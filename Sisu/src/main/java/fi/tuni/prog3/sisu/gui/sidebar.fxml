@@ -10,14 +10,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Pos?>
 
-<StackPane style="-fx-background-color: #141218;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" prefWidth="220" id="sidebar">
+<StackPane fx:controller="fi.tuni.prog3.sisu.gui.SidebarController" style="-fx-background-color: #141218;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" prefWidth="220" id="sidebar">
   <children>
     <VBox spacing="20">
-      <Button text="Tiedot" 
+      <Button fx:id="infoButton"
+        onAction="#showLanding"
+        text="Tiedot" 
         maxWidth="1.7976931348623157E308" 
         prefHeight="55"
-        stylesheets="file:src/resources/css/sideBarButton.css"/> 
-      <Button text="Opinnot" 
+        stylesheets="file:src/resources/css/sideBarButton.css"/>
+
+      <Button fx:id="studiesButton"
+        onAction="#showStudies"
+        text="Opinnot" 
         maxWidth="1.7976931348623157E308" 
         prefHeight="55"
         stylesheets="file:src/resources/css/sideBarButton.css"/>
