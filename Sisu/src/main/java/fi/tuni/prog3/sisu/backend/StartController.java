@@ -1,17 +1,20 @@
 package fi.tuni.prog3.sisu.backend;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
+
+/**
+ * Controller for start.fxml
+ */
 public class StartController {
 
   // load all textfields here
@@ -35,6 +38,7 @@ public class StartController {
     
     File file = new File(filePath);
     // currently just a test print
+    // in reality here you want to pull all the info and inject into main program
     if (file.exists()) {
       System.out.println("User logged in with id " + numField.getText());
       List<String> lines = Files.readAllLines(Paths.get(file.getPath()));
@@ -44,12 +48,13 @@ public class StartController {
     } else {
       file.createNewFile();
       FileWriter writer = new FileWriter(file);
-      String info = "name:" + nameField.getText() +"\n"
+      String info = "name:" + nameField.getText() + "\n"
           + "id:" + numField.getText() + "\n"
           + "enroll:" + enrollField.getText() + "\n"
           + "grad:" + gradField.getText() + "\n";
       writer.write(info);
       writer.close();
+
     }
   }
 
