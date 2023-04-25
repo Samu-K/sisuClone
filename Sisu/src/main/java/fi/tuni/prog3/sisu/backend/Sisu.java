@@ -18,6 +18,9 @@ public class Sisu extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
+    FXMLLoader loginLoader = 
+        new FXMLLoader(getClass().getResource("/fi/tuni/prog3/sisu/gui/start.fxml"));
+    
     FXMLLoader loader = 
         new FXMLLoader(getClass().getResource("/fi/tuni/prog3/sisu/gui/studies.fxml"));
     BorderPane main = loader.load();
@@ -31,7 +34,7 @@ public class Sisu extends Application {
   
     studiesController.setSidebar(sidebar);
   
-    Scene scene = new Scene(main, 330, 650);
+    Scene scene = new Scene(loginLoader.load(), 330, 650);
     primaryStage.setScene(scene);
     primaryStage.setTitle("SIM");
     primaryStage.show();

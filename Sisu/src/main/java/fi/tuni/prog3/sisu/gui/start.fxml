@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane style="-fx-background-color: #1665A6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" stylesheets="/fi/tuni/prog3/sisu/resources/css/start.css">
+<BorderPane style="-fx-background-color: #1665A6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" stylesheets="file:src/resources/css/start.css" fx:controller="fi.tuni.prog3.sisu.backend.StartController">
   <top>
     <VBox alignment="TOP_CENTER">
       <Label 
@@ -23,13 +23,13 @@
     <VBox alignment="TOP_CENTER" style="-fx-padding: 0 10 0 10" spacing="10">
       <Region prefHeight="60" />
 
-      <TextField promptText="Student name*"/>
-      <TextField promptText="Student number*"/>
+      <TextField promptText="Student name*" fx:id="nameField"/>
+      <TextField promptText="Student number*" fx:id="numField"/>
 
       <Region prefHeight="40" />
 
-      <TextField promptText="Enrollment date"/>
-      <TextField promptText="Graduation date"/>
+      <TextField promptText="Enrollment date" fx:id="enrollField"/>
+      <TextField promptText="Graduation date" fx:id="gradField"/>
     </VBox>
   </center>
 
@@ -38,7 +38,7 @@
       <BorderPane.margin>
         <Insets bottom="25.0" left="10" right="10" top="0"/>
       </BorderPane.margin>
-      <Button text="Continue ->"/>
+      <Button text="Continue ->" onAction="#handleContinue" fx:id="contButton"/>
     </HBox>
   </bottom>
 

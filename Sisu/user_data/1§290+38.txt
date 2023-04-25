@@ -1,0 +1,4 @@
+name:Samu
+id:1§290+38
+enroll:123123
+grad:123123
