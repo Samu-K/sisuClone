@@ -21,10 +21,10 @@ public class Sisu extends Application {
     FXMLLoader loginLoader = 
         new FXMLLoader(getClass().getResource("/fi/tuni/prog3/sisu/gui/start.fxml"));
     
-    FXMLLoader loader = 
+    FXMLLoader studiesLoader = 
         new FXMLLoader(getClass().getResource("/fi/tuni/prog3/sisu/gui/studies.fxml"));
-    BorderPane main = loader.load();
-    StudiesController studiesController = loader.getController();
+    BorderPane main = studiesLoader.load();
+    StudiesController studiesController = studiesLoader.getController();
   
     FXMLLoader sidebarLoader =
         new FXMLLoader(getClass().getResource("/fi/tuni/prog3/sisu/gui/sidebar.fxml"));
