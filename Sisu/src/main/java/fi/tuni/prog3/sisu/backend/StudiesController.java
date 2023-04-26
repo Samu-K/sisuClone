@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Pair;
 import javafx.util.StringConverter;
 
 
@@ -29,61 +30,93 @@ public class StudiesController {
   @FXML private HBox degreeCont;
   @FXML private VBox courseBox;
 
+  // Stores all degree programme names and ids, used to populate the dropdown menu
   private static TreeMap<String, String> degreeProgrammes;
+  // Stores the selected degree programme name and id
+  private static Pair<String, String> selectedDegree;
+  // The treeview that displays the courses
+  private static TreeView<String> courseTreeObject;
 
   public void setSidebar(StackPane sidebar) {
     sidebarPlaceholder.getChildren().setAll(sidebar);
   }
-  
+
   /**
    * Initialization function for studies.fxml. 
    * This gets ran whenever studies.fxml is loaded.
    */
   @FXML
   private void initialize() {
-    // Get the degree programmes for the dropdown from the API
-    degreeProgrammes = Interface.getDegreeProgrammeNames();
-
-    // create the actual dropdown menu
-    ComboBox<HideableItem<String>> degreeDropDown = 
-        setupCombo(new ArrayList<String>(degreeProgrammes.keySet()));
-    // add that menu to our container
-    degreeCont.getChildren().add(degreeDropDown);
-    degreeDropDown.setPromptText("Search for Degree Programmes...");
-
-    // listens for a value selection on the combobox
-    degreeDropDown.sceneProperty().addListener((a, oldScene, newScene) -> {
-      if (newScene == null || cboxMouseEventHandler != null) {
-        return;
-      }
-      ListView<?> listView = (ListView<?>) degreeDropDown.lookup(".list-view");
-
-      if (listView != null) {
-        cboxMouseEventHandler = (e) -> {
-          Platform.runLater(() -> {
-            // find the chose degree
-            HideableItem<String> selectedValue = (HideableItem<String>) listView.getSelectionModel().getSelectedItem();
-            // create our course tree based on degree (tba)
-            TreeView<String> courseView = createCourseTree();
-            // remove the combobox and swap in label to show selection
-            courseBox.getChildren().clear();
-            courseBox.getChildren().add(courseView);
-            Label degree = new Label(selectedValue.toString());
-            degree.setStyle("-fx-font-size:18;"
-                    + "-fx-text-fill:white;"
-                    + "-fx-padding: 25 0 0 25;");
-            courseBox.getChildren().add(0, degree);
 
 
+    // Get the degree programmes for the dropdown from the API if we don't have them already
+    if (degreeProgrammes == null) {
+      degreeProgrammes = Interface.getDegreeProgrammeNames();
+    }
 
-          });
-        };       
-        listView.addEventFilter(MouseEvent.MOUSE_PRESSED, cboxMouseEventHandler); 
-      } 
-    });
+    // If we don't have a selected degree, create the dropdown menu to select one
+    if (selectedDegree == null) {
 
-    
+      // create the actual dropdown menu
+      ComboBox<HideableItem<String>> degreeDropDown = 
+          setupCombo(new ArrayList<String>(degreeProgrammes.keySet()));
+
+      degreeDropDown.setPromptText("Search for Degree Programmes...");
+
+      // add that menu to our container
+      degreeCont.getChildren().add(degreeDropDown);
+
+      // listens for a value selection on the combobox
+      degreeDropDown.sceneProperty().addListener((a, oldScene, newScene) -> {
+        if (newScene == null || cboxMouseEventHandler != null) {
+          return;
+        }
+        ListView<?> listView = (ListView<?>) degreeDropDown.lookup(".list-view");
+
+        if (listView != null) {
+          cboxMouseEventHandler = (e) -> {
+            Platform.runLater(() -> {
+              // find the chosen degree
+              HideableItem<String> selectedValue = 
+                  (HideableItem<String>) listView.getSelectionModel().getSelectedItem();
+
+              // save the chosen degree to selectedDegree
+              String degreeName = selectedValue.toString();
+              String degreeId = degreeProgrammes.get(degreeName);
+              selectedDegree = new Pair<>(degreeName, degreeId);
+              
+              showCourseTree();
+            });
+          };
+          listView.addEventFilter(MouseEvent.MOUSE_PRESSED, cboxMouseEventHandler); 
+        } 
+      });
+    } 
+
+    // If we run else, we already have a selected degree, so we can just show the course tree
+    else {
+      showCourseTree();
+    }
+
   }
+
+  private void showCourseTree() {
+
+    // create our course tree based on the degree selected (tba)
+    if (courseTreeObject == null) {
+      courseTreeObject = createCourseTree(selectedDegree.getValue());
+    }
+
+    // remove the combobox
+      courseBox.getChildren().clear();
+      courseBox.getChildren().add(courseTreeObject);
+      Label degree = new Label(selectedDegree.getKey());
+      degree.setStyle("-fx-font-size:18;"
+              + "-fx-text-fill:white;"
+              + "-fx-padding: 25 0 0 25;");
+      courseBox.getChildren().add(0, degree);
+  }
+
   /** 
    * shorthand to make handling combobox mouse events easier.
    */
@@ -92,7 +125,6 @@ public class StudiesController {
   
   /**
    * Set up our autofillable combobox.
-   * 
    *
    * @param items the items that we want to fill our combobox with
    * @return a filled out autocomplete combobox
@@ -117,19 +149,17 @@ public class StudiesController {
           String foundString = items.stream().filter((String i)
                           -> (i).equals(string)).findFirst().orElse(null);
           return new HideableItem<>(foundString, this);
-
         }
-        
       }
     );
-  dropDown.getStylesheets().add("file:src/resources/css/dropdown.css");
+
+    dropDown.getStylesheets().add("file:src/resources/css/dropdown.css");
     
     return dropDown;
   }
 
   /**
    * Create a treeview with multiple root nodes.
-   *
    *
    * @param roots an arraylist filled with treeitems, that work as root nodes
    * @return a treeview with each given treeitem as a root node
@@ -159,11 +189,12 @@ public class StudiesController {
   }
 
   /**
-   * Create the treeview that containes all courses for chose degree.
+   * Create the treeview that containes all courses for the chosen degree.
    *
+   * @param degreeId the group id of the degree programme to be shown
    * @return a filled out and styled treeview
    */
-  private static TreeView<String> createCourseTree() {
+  private static TreeView<String> createCourseTree(String degreeId) {
     TreeItem<String> root1 = new TreeItem<String>("Yhteiset opinnot");
     root1.getChildren().addAll(
         new TreeItem<String>("Orientoivat opinnot"),
@@ -179,10 +210,10 @@ public class StudiesController {
     ArrayList<TreeItem<String>> roots = new ArrayList<>();
     roots.add(root1);
     roots.add(root2);
-    TreeView<String> courseView = createMultiNodeTreeView(roots);
-    courseView.getStylesheets().add("file:src/resources/css/courseView.css");
+    TreeView<String> courseViewToReturn = createMultiNodeTreeView(roots);
+    courseViewToReturn.getStylesheets().add("file:src/resources/css/courseView.css");
 
-    return courseView;
+    return courseViewToReturn;
   }
 
 }
