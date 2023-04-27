@@ -14,7 +14,6 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import javafx.util.StringConverter;
@@ -25,8 +24,6 @@ import javafx.util.StringConverter;
  */
 public class StudiesController {
 
-  @FXML private StackPane sidebarPlaceholder;
-  @FXML private StackPane mainPane;
   @FXML private HBox degreeCont;
   @FXML private VBox courseBox;
 
@@ -36,10 +33,8 @@ public class StudiesController {
   private static Pair<String, String> selectedDegree;
   // The treeview that displays the courses
   private static TreeView<String> courseTreeObject;
-
-  public void setSidebar(StackPane sidebar) {
-    sidebarPlaceholder.getChildren().setAll(sidebar);
-  }
+  // shorthand to make handling combobox mouse events easier.
+  private EventHandler<MouseEvent> cboxMouseEventHandler;
 
   /**
    * Initialization function for studies.fxml. 
@@ -116,12 +111,6 @@ public class StudiesController {
               + "-fx-padding: 25 0 0 25;");
       courseBox.getChildren().add(0, degree);
   }
-
-  /** 
-   * shorthand to make handling combobox mouse events easier.
-   */
-
-  private EventHandler<MouseEvent> cboxMouseEventHandler;
   
   /**
    * Set up our autofillable combobox.

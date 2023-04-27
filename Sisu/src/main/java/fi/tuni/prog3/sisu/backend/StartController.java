@@ -3,23 +3,20 @@ package fi.tuni.prog3.sisu.backend;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import fi.tuni.prog3.sisu.backend.LandingController;
-import fi.tuni.prog3.sisu.gui.SidebarController;
-import java.util.Map;
-import java.util.HashMap;
 
 /**
  * Controller for start.fxml
  */
 public class StartController {
+
+  private MainController mainController;
 
   // load all textfields here
   @FXML TextField nameField;
@@ -27,8 +24,6 @@ public class StartController {
   @FXML TextField enrollField;
   @FXML TextField gradField;
   @FXML Button contButton;
-
-  SidebarController sbc;
 
   private Map<String, String> userInfo = new HashMap<>();
   
@@ -39,16 +34,27 @@ public class StartController {
     return numField.getText();
   }
 
-  @FXML
-  public void initialize() {
-    this.sbc = new SidebarController();
+  public void setMainController(MainController mainController) {
+    this.mainController = mainController;
   }
 
   /**
    * Is executed when continue button is pressed.
    * Writes all given info to file, or reads if it ID exists.
+   * After this it shows the main view.
    */
-  public void handleContinue(ActionEvent event) throws IOException {
+  public void handleContinue(ActionEvent event) {
+
+    try {
+      writeToUserFile();
+    } catch (IOException e) {
+      System.out.println("Error writing to file");
+    }
+    mainController.showMainView();
+  }
+
+  // TODO: THIS DOES NOT WORK YET
+  private void writeToUserFile() throws IOException {
     String fileName = numField.getText() + ".txt"; 
     String filePath = "user_data/" + fileName;
     
@@ -67,8 +73,6 @@ public class StartController {
       }
       writer.close();
     }
-
-    sbc.showLanding();
   }
 
 } 
