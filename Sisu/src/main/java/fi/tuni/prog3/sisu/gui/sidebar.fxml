@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Pos?>
 
-<StackPane fx:controller="fi.tuni.prog3.sisu.gui.SidebarController" style="-fx-background-color: #141218;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" prefWidth="220" id="sidebar">
+<StackPane fx:controller="fi.tuni.prog3.sisu.backend.SidebarController" style="-fx-background-color: #141218;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" prefWidth="220" id="sidebar">
   <children>
     <VBox spacing="20">
       <Button fx:id="infoButton"

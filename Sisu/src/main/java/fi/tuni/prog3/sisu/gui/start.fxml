@@ -24,7 +24,7 @@
       <Region prefHeight="60" />
 
       <TextField promptText="Student name*" fx:id="nameField"/>
-      <TextField promptText="Student number*" fx:id="numField"/>
+      <TextField text="1231" promptText="Student number*" fx:id="numField"/>
 
       <Region prefHeight="40" />
 
