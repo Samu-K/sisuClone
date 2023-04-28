@@ -128,6 +128,13 @@ public class ObjectBuilders {
     childGroupIds = children.returnGroupIds();
     // TODO: Remove test print
     System.out.println("Child group ids found: " + childGroupIds);
+
+    // if there is only one child StudyModule, we skip this layer alltogether
+    if (childGroupIds.size() == 1 && childGroupIds.get(0).startsWith("otm")) {
+      String childId = childGroupIds.get(0);
+      StudyModule childModule = (StudyModule) buildCourseOrStudyModule(childId);
+      return childModule;
+    }
     
     StudyModule newStudyModule = 
         new StudyModule(name, id, groupId, minCredits, isMandatory, childGroupIds);
