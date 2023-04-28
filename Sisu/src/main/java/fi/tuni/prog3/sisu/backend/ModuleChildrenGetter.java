@@ -4,94 +4,78 @@ package fi.tuni.prog3.sisu.backend;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
+import fi.tuni.prog3.sisu.api.Interface;
 import java.util.ArrayList;
 
+/**
+ * Class for getting children of a module from API.
+ */
 public class ModuleChildrenGetter {
     
-    private JsonObject moduleJson;
-    
-    /**
-     * Builder with DegreeModule parameter
-     * @param module DegreeModule whose children are fetched
-     */
-    public ModuleChildrenGetter(DegreeModule module) {
-        
-        
-        String id = module.getId();
-        
-        String url = String.format("https://sis-tuni.funidata.fi/kori/api/modules/%s", id);
-        
-        ApiJsonGetter jsonGetter = new ApiJsonGetter();
-        
+  private JsonObject moduleJson;
   
-        moduleJson = jsonGetter.getJsonFromApi(url);
+  /**
+   * Builder with DegreeModule parameter.
+
+   * @param module DegreeModule whose children are fetched
+   */
+  public ModuleChildrenGetter(DegreeModule module) {
         
-        
-    }
-    
-    /**
-     * Builder with groupId parameter
-     * @param groupId for getting data from API
-     */
-    public ModuleChildrenGetter(String groupId) {
-        String url = String.format("https://sis-tuni.funidata.fi/kori/api/modules/by-group-id?groupId=%s&universityId=tuni-university-root-id", groupId);
-        
-        ApiJsonGetter jsonGetter = new ApiJsonGetter();
-        
+    String id = module.getId();    
+
+    moduleJson = Interface.getDegreeModuleById(id);
+  }
   
-        moduleJson = jsonGetter.getJsonFromApi(url);
+  /**
+   * Builder with groupId parameter.
+
+   * @param groupId for getting data from API
+   */
+  public ModuleChildrenGetter(String groupId) {
+
+    moduleJson = Interface.getDegreeModuleById(groupId);
+  }
+  
+  /**
+   * Creates an ArrayList with children GroupIds for the module.
+
+   * @return ArrayList 
+   */
+  public ArrayList<String> returnGroupIds() {
+            
+    JsonObject ruleObject = moduleJson.getAsJsonObject("rule");
+    
+    if (ruleObject.get("type").getAsString().equals("CreditsRule")) {
+      ruleObject = ruleObject.getAsJsonObject("rule");
     }
     
-    /**
-     * Creates an ArrayList with children GroupIds for the module 
-     * @return ArrayList 
-     */
-    public ArrayList<String> returnGroupIds() {
-                
-        JsonObject ruleObject = moduleJson.getAsJsonObject("rule");
-        
-        if (ruleObject.get("type").getAsString().equals("CreditsRule")) {
-            ruleObject = ruleObject.getAsJsonObject("rule");
-        }
-        
-        JsonElement rulesElement = ruleObject.get("rules");
-        
-        JsonArray rulesArray = rulesElement.getAsJsonArray();
-        
-        ArrayList<String> groupIdList = new ArrayList<>();
-        
-        for (JsonElement childRuleElement : rulesArray) {
-            JsonObject childRuleObject = childRuleElement.getAsJsonObject();
-            
-            JsonElement groupIdElement;
-            
-            if (childRuleObject.get("type").getAsString().equals("CourseUnitRule")) {
-                
-                 groupIdElement = childRuleObject.get("courseUnitGroupId");
-                
-            
-            }
-            
-            else if (childRuleObject.get("type").getAsString().equals("ModuleRule")) {
-                
-                 groupIdElement = childRuleObject.get("moduleGroupId");            }
-            
-            else {
-                continue;
-            }
-            
-            
-            
-            
-            String groupId = groupIdElement.getAsString();
-            
-            groupIdList.add(groupId);
-        }
-        
-        return groupIdList;
-                
-        
+    JsonElement rulesElement = ruleObject.get("rules");
+    
+    JsonArray rulesArray = rulesElement.getAsJsonArray();
+    
+    ArrayList<String> groupIdList = new ArrayList<>();
+    
+    for (JsonElement childRuleElement : rulesArray) {
+      JsonObject childRuleObject = childRuleElement.getAsJsonObject();
+      
+      JsonElement groupIdElement;
+      
+      if (childRuleObject.get("type").getAsString().equals("CourseUnitRule")) {
+          
+        groupIdElement = childRuleObject.get("courseUnitGroupId");
+      } else if (childRuleObject.get("type").getAsString().equals("ModuleRule")) {
+          
+        groupIdElement = childRuleObject.get("moduleGroupId");
+      } else {
+        continue;
+      }
+      
+      String groupId = groupIdElement.getAsString();
+      
+      groupIdList.add(groupId);
     }
+    
+    return groupIdList; 
+  }
     
 }

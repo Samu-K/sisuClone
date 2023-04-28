@@ -15,12 +15,12 @@ import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Pair;
 import javafx.util.StringConverter;
 
 
 /**
- * Controller class for studies.fxml.
+ * Controller class for studies.fxml. If you need to choose the degreeProgramme again, set 
+ * selectedDegree to null.
  */
 public class StudiesController {
 
@@ -29,8 +29,8 @@ public class StudiesController {
 
   // Stores all degree programme names and ids, used to populate the dropdown menu
   private static TreeMap<String, String> degreeProgrammes;
-  // Stores the selected degree programme name and id
-  private static Pair<String, String> selectedDegree;
+  // Stores the selected degree programme as a StudyModule object
+  private static StudyModule selectedDegree;
   // The treeview that displays the courses
   private static TreeView<String> courseTreeObject;
   // shorthand to make handling combobox mouse events easier.
@@ -78,7 +78,7 @@ public class StudiesController {
               // save the chosen degree to selectedDegree
               String degreeName = selectedValue.toString();
               String degreeId = degreeProgrammes.get(degreeName);
-              selectedDegree = new Pair<>(degreeName, degreeId);
+              selectedDegree = (StudyModule) ObjectBuilders.buildCourseOrStudyModule(degreeId);
               
               showCourseTree();
             });
@@ -99,17 +99,17 @@ public class StudiesController {
 
     // create our course tree based on the degree selected (tba)
     if (courseTreeObject == null) {
-      courseTreeObject = createCourseTree(selectedDegree.getValue());
+      courseTreeObject = createCourseTree(selectedDegree.getId());
     }
 
     // remove the combobox
-      courseBox.getChildren().clear();
-      courseBox.getChildren().add(courseTreeObject);
-      Label degree = new Label(selectedDegree.getKey());
-      degree.setStyle("-fx-font-size:18;"
-              + "-fx-text-fill:white;"
-              + "-fx-padding: 25 0 0 25;");
-      courseBox.getChildren().add(0, degree);
+    courseBox.getChildren().clear();
+    courseBox.getChildren().add(courseTreeObject);
+    Label degree = new Label(selectedDegree.getName());
+    degree.setStyle("-fx-font-size:18;"
+            + "-fx-text-fill:white;"
+            + "-fx-padding: 25 0 0 25;");
+    courseBox.getChildren().add(0, degree);
   }
   
   /**
