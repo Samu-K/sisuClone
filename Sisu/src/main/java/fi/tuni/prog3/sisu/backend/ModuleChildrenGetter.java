@@ -1,4 +1,3 @@
-
 package fi.tuni.prog3.sisu.backend;
 
 import com.google.gson.JsonArray;
@@ -8,7 +7,7 @@ import fi.tuni.prog3.sisu.api.Interface;
 import java.util.ArrayList;
 
 /**
- * Class for getting children of a module from API.
+ * Class for getting direct children modules and courses of a module from API.
  */
 public class ModuleChildrenGetter {
     
@@ -29,7 +28,7 @@ public class ModuleChildrenGetter {
   /**
    * Builder with groupId parameter.
 
-   * @param groupId for getting data from API
+   * @param groupId the groupId of the StudyModule for getting data from API
    */
   public ModuleChildrenGetter(String groupId) {
 
@@ -37,9 +36,9 @@ public class ModuleChildrenGetter {
   }
   
   /**
-   * Creates an ArrayList with children GroupIds for the module.
+   * Creates an ArrayList with the module's  direct childrens' groupIds.
 
-   * @return ArrayList 
+   * @return ArrayList the ArrayList with groupIds of the children modules and courses
    */
   public ArrayList<String> returnGroupIds() {
             
