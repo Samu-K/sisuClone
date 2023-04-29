@@ -17,14 +17,14 @@ import java.io.IOException;
  */
 public class LandingController {
 
-  private String id;
+  private String id="22016";
   private Map<String, String> userInfo = new HashMap<>();
 
   @FXML TextField firstNameLabel;
   @FXML TextField lastNameLabel;
   @FXML TextField langLabel;
   @FXML TextField addressLabel;
-  @FXML TextField numLabel;
+  @FXML Label numLabel;
   @FXML TextField mailLabel;
   @FXML Label degreeLabel;
 
@@ -32,14 +32,29 @@ public class LandingController {
     this.id = id;
   }
 
+  public Map<String, String> getUserData() {
+    updateUserInfo();
+    return userInfo;
+  }
+
+  private void updateUserInfo() {
+    userInfo = new HashMap<String,String>();
+    userInfo.put("id",numLabel.getText());
+    userInfo.put("first_name",firstNameLabel.getText());
+    userInfo.put("last_name",lastNameLabel.getText());
+    userInfo.put("language",langLabel.getText());
+    userInfo.put("address",langLabel.getText());
+    userInfo.put("email",mailLabel.getText());
+  }
+
   @FXML
-  public void initialize() {
+  private void initialize() {
     try {
       readFile();
     } catch (IOException e) {
       System.out.println("ID file not found");
     }
-    
+    System.out.println("ID: " + userInfo.get("id")); 
     firstNameLabel.setText(userInfo.get("name"));
     lastNameLabel.setText(userInfo.get("name"));
     numLabel.setText(userInfo.get("id"));
@@ -53,6 +68,10 @@ public class LandingController {
     List<String> lines = Files.readAllLines(Paths.get(file.getPath()));
     for (String line : lines) {
       String[] spl = line.split(":");
+      if (spl.length < 2) {
+        continue;
+      }
+      System.out.println(spl[0] + " / " + spl[1]);
       userInfo.put(spl[0], spl[1]);
     }
   }

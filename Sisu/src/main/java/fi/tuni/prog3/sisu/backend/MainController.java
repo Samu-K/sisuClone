@@ -15,14 +15,20 @@ public class MainController {
 
   private Stage primaryStage;
   private BorderPane rootLayout;
+  private LandingController lc;
 
   /**
    * Constructor. Initializes the root layout and shows the login page.
 
    * @param primaryStage the primary stage
    */
-  public MainController(Stage primaryStage) {
+  public MainController(Stage primaryStage) throws IOException {
     this.primaryStage = primaryStage;
+    FXMLLoader fxmlLoader = new FXMLLoader();
+    BorderPane p = fxmlLoader.load(getClass().getResource("/fi/tuni/prog3/sisu/gui/landing.fxml").openStream());
+    LandingController lc = (LandingController) fxmlLoader.getController();
+    this.lc = lc;
+
     initRootLayout();
     showLoginPage();
   }
@@ -94,5 +100,9 @@ public class MainController {
    */
   public void setCenter(Pane pane) {
     rootLayout.setCenter(pane);
+  }
+
+  public LandingController getLc() {
+    return lc;
   }
 }

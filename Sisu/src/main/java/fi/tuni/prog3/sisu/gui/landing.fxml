@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane style="-fx-background-color: #322F37;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" stylesheets="file:src/resources/css/landing.css">
+<BorderPane style="-fx-background-color: #322F37;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" id="root" stylesheets="file:src/resources/css/landing.css" fx:controller="fi.tuni.prog3.sisu.backend.LandingController">
 
   <center>
     <HBox spacing="60">

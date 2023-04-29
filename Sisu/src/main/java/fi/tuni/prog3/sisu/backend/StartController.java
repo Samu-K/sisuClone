@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 public class StartController {
 
   private MainController mainController;
+  private LandingController landingController;
 
   // load all textfields here
   @FXML TextField nameField;
@@ -53,7 +54,6 @@ public class StartController {
     mainController.showMainView();
   }
 
-  // TODO: THIS DOES NOT WORK YET
   private void writeToUserFile() throws IOException {
     String fileName = numField.getText() + ".txt"; 
     String filePath = "user_data/" + fileName;
@@ -69,7 +69,9 @@ public class StartController {
 
       FileWriter writer = new FileWriter(file);
       for (Map.Entry<String, String> entry : userInfo.entrySet()) {
-        writer.write(entry.getKey() + ":" + entry.getValue() + "\n");
+        String line = entry.getKey() + ":" + entry.getValue() + "\n";
+        System.out.println("Writing: " + line);
+        writer.write(line);
       }
       writer.close();
     }

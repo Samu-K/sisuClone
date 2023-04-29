@@ -34,6 +34,7 @@
     </VBox>
 
     <Button text="Kirjaudu ulos" 
+      onAction="#logOut"
       StackPane.alignment="BOTTOM_CENTER" 
       maxWidth="1.7976931348623157E308" 
       prefHeight="55"
