@@ -11,23 +11,20 @@ package fi.tuni.prog3.sisu.backend;
 public abstract class DegreeModule {
   private String name;
   private String id;
-  private String groupId;
   private int minCredits;
     
   /**
    * A constructor for initializing the member variables.
    *
    * @param name name of the Module or Course.
-   * @param id id of the Module or Course.
-   * @param groupId group id of the Module or Course.
+   * @param id id or groupId of the Module or Course.
    * @param minCredits minimum credits of the Module or Course.
    */
-  public DegreeModule(String name, String id, String groupId, 
+  public DegreeModule(String name, String id, 
           int minCredits) {
       
     this.name = name;
     this.id = id;
-    this.groupId = groupId;
     this.minCredits = minCredits;
   }
   
@@ -41,7 +38,7 @@ public abstract class DegreeModule {
   }
   
   /**
-   * Returns the id of the Module or Course.
+   * Returns the id or groupId of the Module or Course.
    *
    * @return id of the Module or Course.
    */
@@ -49,14 +46,6 @@ public abstract class DegreeModule {
     return this.id;
   }
   
-  /**
-   * Returns the group id of the Module or Course.
-   *
-   * @return group id of the Module or Course.
-   */
-  public String getGroupId() {
-    return this.groupId;
-  }
   
   /**
    * Returns the minimum credits of the Module or Course.

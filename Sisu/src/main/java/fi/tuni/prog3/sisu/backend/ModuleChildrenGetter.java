@@ -11,71 +11,71 @@ import java.util.ArrayList;
  * Class for getting children of a module from API.
  */
 public class ModuleChildrenGetter {
-    
-  private JsonObject moduleJson;
-  
-  /**
-   * Builder with DegreeModule parameter.
-
-   * @param module DegreeModule whose children are fetched
-   */
-  public ModuleChildrenGetter(DegreeModule module) {
-        
-    String id = module.getId();    
-
-    moduleJson = Interface.getDegreeModuleById(id);
-  }
-  
-  /**
-   * Builder with groupId parameter.
-
-   * @param groupId for getting data from API
-   */
-  public ModuleChildrenGetter(String groupId) {
-
-    moduleJson = Interface.getDegreeModuleById(groupId);
-  }
   
   /**
    * Creates an ArrayList with children GroupIds for the module.
 
    * @return ArrayList 
    */
-  public ArrayList<String> returnGroupIds() {
-            
-    JsonObject ruleObject = moduleJson.getAsJsonObject("rule");
-    
-    if (ruleObject.get("type").getAsString().equals("CreditsRule")) {
-      ruleObject = ruleObject.getAsJsonObject("rule");
+  public static ArrayList<String> getChildrenIds(String id) {
+    JsonObject sourceJson = Interface.getDegreeModuleById(id);
+    ArrayList<String> childrenIds = new ArrayList<>();
+    if (sourceJson.has("rule")) {
+      JsonObject rule = sourceJson.getAsJsonObject("rule");
+      processRule(rule, childrenIds);
     }
-    
-    JsonElement rulesElement = ruleObject.get("rules");
-    
-    JsonArray rulesArray = rulesElement.getAsJsonArray();
-    
-    ArrayList<String> groupIdList = new ArrayList<>();
-    
-    for (JsonElement childRuleElement : rulesArray) {
-      JsonObject childRuleObject = childRuleElement.getAsJsonObject();
+    return childrenIds;
+  }
+
+  // This function does not return anything as it modifies the childrenIds ArrayList passed to it.
+  private static void processRule(JsonObject rule, ArrayList<String> childrenIds) {
+    String type = rule.get("type").getAsString();
+
+    switch (type) {
+      case "ModuleRule":
+        childrenIds.add(rule.get("moduleGroupId").getAsString());
+        break;
+
+      case "CourseUnitRule":
+        childrenIds.add(rule.get("courseUnitGroupId").getAsString());
+        break;
+
+      // Recursively process subrules until a ModuleRule or CourseUnitRule is found.
+      case "CompositeRule":
+        JsonArray subRules = rule.getAsJsonArray("rules");
+        for (JsonElement subRuleElement : subRules) {
+          JsonObject subRule = subRuleElement.getAsJsonObject();
+          processRule(subRule, childrenIds);
+        }
+        break;
+
+      // Recursively process subrules until a ModuleRule or CourseUnitRule is found.
+      case "CourseUnitCountRule":
+        subRules = rule.getAsJsonArray("rules");
+        System.out.println("subRules is an Array: " + subRules.isJsonArray());
+        for (JsonElement subRuleElement : subRules) {
+          JsonObject subRule = subRuleElement.getAsJsonObject();
+          processRule(subRule, childrenIds);
+        }
+        break;
       
-      JsonElement groupIdElement;
-      
-      if (childRuleObject.get("type").getAsString().equals("CourseUnitRule")) {
-          
-        groupIdElement = childRuleObject.get("courseUnitGroupId");
-      } else if (childRuleObject.get("type").getAsString().equals("ModuleRule")) {
-          
-        groupIdElement = childRuleObject.get("moduleGroupId");
-      } else {
-        continue;
-      }
-      
-      String groupId = groupIdElement.getAsString();
-      
-      groupIdList.add(groupId);
+      // Recursively process subrule until a ModuleRule or CourseUnitRule is found.
+      case "CreditsRule":
+        JsonObject subRule = rule.getAsJsonObject("rule");
+        processRule(subRule, childrenIds);
+        
+        break;
+
+      // At the moment these two rules are ignored.
+      case "AnyCourseUnitRule":
+        break;
+        
+      case "AnyModuleRule":
+        break;
+
+      default:
+        throw new IllegalArgumentException("Unknown rule type: " + type);
     }
-    
-    return groupIdList; 
   }
     
 }

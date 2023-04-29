@@ -7,16 +7,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
-
-
 /**
  * General functions for getting data from an API in JSON format based on URL.
  */
 public class ApiJsonGetter {
   /**
-   * Returns a JsonObject that is extracted from the Sisu API. If the connection fails, 
-   * program is terminated
+   * Returns a JsonObject that is extracted from the Sisu API. If the URL is not valid, the function
+   * will return null.
    *
    * @param urlString URL for retrieving information from the Sisu API.
    * @return JsonObject.
@@ -24,10 +21,13 @@ public class ApiJsonGetter {
   public static JsonObject getJsonFromApi(String urlString) {
     JsonObject jsonObject = null;
     try {
+      // Open connection to the URL
       HttpURLConnection connection = (HttpURLConnection) new URL(urlString).openConnection();
       connection.setRequestMethod("GET");
       int resposeCode = connection.getResponseCode();
       if (resposeCode == HttpURLConnection.HTTP_OK) {
+
+        // If the connection is successful, read the response
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
@@ -35,17 +35,24 @@ public class ApiJsonGetter {
           response.append(inputLine);
         }
         in.close();
+
+        // Parse the response to a JsonObject
         String json = response.toString();
         Gson gson = new Gson();
+        // The jsonObject might be wrapped in an array when using groupIds to call the api, so we
+        // need to check for that
+        if (json.startsWith("[")) {
+          json = json.substring(1, json.length() - 1);
+        }
         jsonObject = gson.fromJson(json, JsonObject.class);
 
       } else {
-        System.out.println("Error: " + resposeCode);
-        System.exit(1);
+        // TODO: remove test print
+        System.out.println("Error: " + resposeCode + " failed to reach url: " + urlString);
+        return null;
       }
     } catch (Exception e) {
       System.out.println("Error: " + e.getMessage());
-      System.exit(1);
     }
     
     return jsonObject;
