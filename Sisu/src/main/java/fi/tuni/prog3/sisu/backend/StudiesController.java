@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -72,6 +71,7 @@ public class StudiesController {
           cboxMouseEventHandler = (e) -> {
             Platform.runLater(() -> {
               // find the chosen degree
+              @SuppressWarnings("unchecked")
               HideableItem<String> selectedValue = 
                   (HideableItem<String>) listView.getSelectionModel().getSelectedItem();
 
@@ -86,20 +86,18 @@ public class StudiesController {
           listView.addEventFilter(MouseEvent.MOUSE_PRESSED, cboxMouseEventHandler); 
         } 
       });
-    } 
 
-    // If we run else, we already have a selected degree, so we can just show the course tree
-    else {
+    } else {
+      // If we run else, we already have a selected degree, so we can just show the course tree
       showCourseTree();
     }
-
   }
 
   private void showCourseTree() {
 
-    // create our course tree based on the degree selected (tba)
+    // create our course tree based on the degree selected
     if (courseTreeObject == null) {
-      courseTreeObject = createCourseTree(selectedDegree.getId());
+      courseTreeObject = CourseTreeView.createCourseTree(selectedDegree);
     }
 
     // remove the combobox
@@ -148,23 +146,6 @@ public class StudiesController {
   }
 
   /**
-   * Create a treeview with multiple root nodes.
-   *
-   * @param roots an arraylist filled with treeitems, that work as root nodes
-   * @return a treeview with each given treeitem as a root node
-   */
-  private static TreeView<String> createMultiNodeTreeView(ArrayList<TreeItem<String>> roots) {
-    TreeItem<String> dummyRoot = new TreeItem<>();
-    for (TreeItem<String> root : roots) {
-      dummyRoot.getChildren().add(root);
-    }
-    TreeView<String> tree = new TreeView<>(dummyRoot);
-    tree.setShowRoot(false);
-
-    return tree;
-  }
-
-  /**
    * Get the group id of the degree programme that was selected. Clears the degreeProgrammes map
    * because it is not used anymore in normal use.
    *
@@ -176,35 +157,6 @@ public class StudiesController {
     degreeProgrammes.clear();
     return groupId;
   }
-
-  /**
-   * Create the treeview that containes all courses for the chosen degree.
-   *
-   * @param degreeId the group id of the degree programme to be shown
-   * @return a filled out and styled treeview
-   */
-  private static TreeView<String> createCourseTree(String degreeId) {
-    TreeItem<String> root1 = new TreeItem<String>("Yhteiset opinnot");
-    root1.getChildren().addAll(
-        new TreeItem<String>("Orientoivat opinnot"),
-        new TreeItem<String>("Tilastotieteen johdatuskurssi"),
-        new TreeItem<String>("Johdatus yliopistomatematiikkaan")
-    );
-    TreeItem<String> root2 = new TreeItem<>("Perusopinnot");
-    root2.getChildren().addAll(
-        new TreeItem<String>("Ohjelmointi 1"),
-        new TreeItem<String>("Ohjelmointi 2"),
-        new TreeItem<String>("Ohjelmointi 3")
-    );
-    ArrayList<TreeItem<String>> roots = new ArrayList<>();
-    roots.add(root1);
-    roots.add(root2);
-    TreeView<String> courseViewToReturn = createMultiNodeTreeView(roots);
-    courseViewToReturn.getStylesheets().add("file:src/resources/css/courseView.css");
-
-    return courseViewToReturn;
-  }
-
 }
 
 

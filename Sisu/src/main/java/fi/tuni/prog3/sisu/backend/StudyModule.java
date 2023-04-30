@@ -1,7 +1,5 @@
 package fi.tuni.prog3.sisu.backend;
 
-import com.google.gson.JsonObject;
-import fi.tuni.prog3.sisu.api.Interface;
 import java.util.ArrayList;
 
 /**
@@ -16,12 +14,12 @@ public class StudyModule extends DegreeModule {
   private boolean childrenHaveBeenAdded = false;
 
   private void getChildrenFromApi() {
+    System.out.println("Getting children for " + getName() + "id: " + getId());
     if (!childrenHaveBeenAdded) {
+      System.out.println("Building all children of " + getName() + "id: " + getId());
+      childModules = new ArrayList<DegreeModule>();
       for (String childGroupId : childGroupIds) {
-        JsonObject childJsonObject = Interface.getDegreeModuleById(childGroupId);
-        // TODO: Build the object in ObjectBuilders class
-        // Create a mock object for now
-        DegreeModule childModule = new Course("Johdatus todennäköisyyslaskentaan", "", "tut-xxx-xxx-xxx", 5, true, false); // = ObjectBuilders.buildDegreeModule(childJsonObject);
+        DegreeModule childModule = ObjectBuilders.buildCourseOrStudyModule(childGroupId);
         childModules.add(childModule);
       }
       childrenHaveBeenAdded = true;
@@ -53,15 +51,14 @@ public class StudyModule extends DegreeModule {
    * A constructor for initializing the member variables.
 
    * @param name name of the StudyModule.
-   * @param id id of the StudyModule.
-   * @param groupId group id of the StudyModule.
+   * @param id id or groupId of the StudyModule.
    * @param minCredits minimum credits of the StudyModule.
    * @param isMandatory whether the StudyModule is mandatory or not.
    * @param childGroupIds group ids of the children of this StudyModule.
    */
-  public StudyModule(String name, String id, String groupId, int minCredits, boolean isMandatory,
+  public StudyModule(String name, String id, int minCredits, boolean isMandatory,
       ArrayList<String> childGroupIds) {
-    super(name, id, groupId, minCredits);
+    super(name, id, minCredits);
     
     this.isMandatory = isMandatory;
     this.childGroupIds = childGroupIds;
