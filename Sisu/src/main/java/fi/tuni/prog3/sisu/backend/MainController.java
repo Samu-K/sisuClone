@@ -1,6 +1,7 @@
 package fi.tuni.prog3.sisu.backend;
 
 import java.io.IOException;
+import java.util.TreeMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -15,7 +16,9 @@ public class MainController {
 
   private Stage primaryStage;
   private BorderPane rootLayout;
-  private LandingController lc;
+
+  // Stores the currently active users information
+  private static TreeMap<String, String> userInfo = new TreeMap<>();
 
   /**
    * Constructor. Initializes the root layout and shows the login page.
@@ -24,10 +27,6 @@ public class MainController {
    */
   public MainController(Stage primaryStage) throws IOException {
     this.primaryStage = primaryStage;
-    FXMLLoader fxmlLoader = new FXMLLoader();
-    BorderPane p = fxmlLoader.load(getClass().getResource("/fi/tuni/prog3/sisu/gui/landing.fxml").openStream());
-    LandingController lc = (LandingController) fxmlLoader.getController();
-    this.lc = lc;
 
     initRootLayout();
     showLoginPage();
@@ -102,7 +101,11 @@ public class MainController {
     rootLayout.setCenter(pane);
   }
 
-  public LandingController getLc() {
-    return lc;
+  public static void addEntryToUserInfo(String key, String value) {
+    userInfo.put(key, value);
+  }
+
+  public static TreeMap<String, String> getUserInfo() {
+    return userInfo;
   }
 }

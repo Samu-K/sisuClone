@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.io.File;
 import java.io.FileWriter;
 /**
@@ -53,17 +54,16 @@ public class SidebarController {
 
   @FXML
   private void logOut() throws IOException {
-    LandingController lc = mainController.getLc();
-    Map<String, String> info = lc.getUserData();
     
-    String fileName = info.get("id") +".txt";
+    TreeMap<String, String> userInfo = MainController.getUserInfo();
+    String fileName = userInfo.get("username") + ".txt";
     String filePath = "user_data/" + fileName;
     File oldFile = new File(filePath);
     oldFile.delete();
     File newFile = new File(filePath);
 
     FileWriter writer = new FileWriter(newFile, false);
-    for (Map.Entry<String, String> entry : info.entrySet()) {
+    for (Map.Entry<String, String> entry : userInfo.entrySet()) {
       String line = entry.getKey() + ":" + entry.getValue() + "\n";
       System.out.println("Writing: " + line);
       writer.write(line);

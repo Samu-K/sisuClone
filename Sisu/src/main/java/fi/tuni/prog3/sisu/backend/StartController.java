@@ -1,10 +1,5 @@
 package fi.tuni.prog3.sisu.backend;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +12,6 @@ import javafx.scene.control.TextField;
 public class StartController {
 
   private MainController mainController;
-  private LandingController landingController;
 
   // load all textfields here
   @FXML TextField nameField;
@@ -25,8 +19,6 @@ public class StartController {
   @FXML TextField enrollField;
   @FXML TextField gradField;
   @FXML Button contButton;
-
-  private Map<String, String> userInfo = new HashMap<>();
   
   /**
    * Return id.
@@ -46,35 +38,30 @@ public class StartController {
    */
   public void handleContinue(ActionEvent event) {
 
-    try {
-      writeToUserFile();
-    } catch (IOException e) {
-      System.out.println("Error writing to file");
+    String userName = nameField.getText();
+    String userStudentId = numField.getText();
+    String userExpectedGradDate = gradField.getText();
+    String userEnrollDate = enrollField.getText();
+
+    // TODO: check if there already is a user info file with the this id
+    boolean userExists = false;
+
+    if (!userExists) {
+      // TODO: create new file for the user
     }
+
+    // TODO: load the user info from the file
+    // Reading the file should be done in a separate method that is called from here.
+    // The function will evetually also handle loading users previous progress.
+
+
+    // This is a temporary solution to update the user info to the main controller.
+    // It makes it possible to show the user info in the landing view.
+    MainController.addEntryToUserInfo("name", userName);
+    MainController.addEntryToUserInfo("id", userStudentId);
+    MainController.addEntryToUserInfo("grad", userExpectedGradDate);
+    MainController.addEntryToUserInfo("enroll", userEnrollDate);
+
     mainController.showMainView();
   }
-
-  private void writeToUserFile() throws IOException {
-    String fileName = numField.getText() + ".txt"; 
-    String filePath = "user_data/" + fileName;
-    
-    File file = new File(filePath);
-
-    if (file.exists() == false) {
-      file.createNewFile();
-      userInfo.put("name", nameField.getText());
-      userInfo.put("id", numField.getText());
-      userInfo.put("enroll", enrollField.getText());
-      userInfo.put("grad", gradField.getText());
-
-      FileWriter writer = new FileWriter(file);
-      for (Map.Entry<String, String> entry : userInfo.entrySet()) {
-        String line = entry.getKey() + ":" + entry.getValue() + "\n";
-        System.out.println("Writing: " + line);
-        writer.write(line);
-      }
-      writer.close();
-    }
-  }
-
 } 
