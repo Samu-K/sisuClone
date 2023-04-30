@@ -24,15 +24,28 @@ public class Course extends DegreeModule {
     this.isCompleted = isCompleted;
 
   }
+  /**
+  * Returns boolean for if the course is completed
   
+  * @return true or false based on if the course is completed or not
+  */
   public boolean isCompleted() {
     return isCompleted;
   }
 
+  /**
+  * Switches the completion state for the course
+  
+  */
   public void toggleCompleted() {
     isCompleted = !isCompleted;
   }
 
+  /**
+  * Returns boolean for is the course mandatory
+  
+  * @return boolean value is the course mandatory or not
+  */
   public boolean isMandatory() {
     return isMandatory;
   }
