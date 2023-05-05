@@ -47,8 +47,6 @@ public class ApiJsonGetter {
         jsonObject = gson.fromJson(json, JsonObject.class);
 
       } else {
-        // TODO: remove test print
-        System.out.println("Error: " + resposeCode + " failed to reach url: " + urlString);
         return null;
       }
     } catch (Exception e) {

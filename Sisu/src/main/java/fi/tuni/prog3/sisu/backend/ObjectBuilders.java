@@ -38,9 +38,6 @@ public class ObjectBuilders {
    * @return returns the created course object
    */
   private static DegreeModule createCourse(JsonObject courseJsonObject) {
-    
-    //TODO: remove test print
-    System.out.println("creating a Course");
 
     //get name as string
     JsonObject nameObject = courseJsonObject.getAsJsonObject("name");
@@ -75,9 +72,6 @@ public class ObjectBuilders {
    * @return returns the created StudyModule object
    */
   private static DegreeModule createStudyModule(JsonObject studyModuleJsonObject) {
-      
-    // TODO: Remove test print
-    System.out.println("creating a StudyModule");
 
     //get name as string
     JsonObject nameObject = studyModuleJsonObject.getAsJsonObject("name");
@@ -90,34 +84,19 @@ public class ObjectBuilders {
     }
     String name = nameElement.getAsString();
 
-    // TODO: Remove test print
-    System.out.println("Name found: " + name);
-
     //get id as string
     JsonElement idElement = studyModuleJsonObject.get("id");
     String id = idElement.getAsString();
-
-    // TODO: Remove test print
-    System.out.println("Id found: " + id);
   
     //get minCredits int
     int minCredits = getStudyModuleMinCredits(studyModuleJsonObject);
-
-    // TODO: Remove test print
-    System.out.println("Min credits found: " + minCredits);
   
     //get info about mandatory 
     boolean isMandatory = isStudyModuleMandatory(studyModuleJsonObject);
-
-    //TODO: remove test print
-    System.out.println("Is mandatory found: " + isMandatory);
       
     //get child groupids
     ArrayList<String> childGroupIds = new ArrayList<String>();
     childGroupIds = ModuleChildrenGetter.getChildrenIds(id);
-
-    // TODO: Remove test print
-    System.out.println("Child group ids found: " + childGroupIds);
 
     // If there is only one child and its of type, we skip this layer alltogether
 

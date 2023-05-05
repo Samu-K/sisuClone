@@ -25,8 +25,8 @@ public class Course extends DegreeModule {
 
   }
   /**
-  * Returns boolean for if the course is completed
-  
+  * Returns boolean for if the course is completed.
+
   * @return true or false based on if the course is completed or not
   */
   public boolean isCompleted() {
@@ -34,7 +34,7 @@ public class Course extends DegreeModule {
   }
 
   /**
-  * Switches the completion state for the course
+  * Switches the completion state for the course.
   
   */
   public void toggleCompleted() {
@@ -42,8 +42,8 @@ public class Course extends DegreeModule {
   }
 
   /**
-  * Returns boolean for is the course mandatory
-  
+  * Returns boolean for is the course mandatory.
+
   * @return boolean value is the course mandatory or not
   */
   public boolean isMandatory() {
