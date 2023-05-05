@@ -1,5 +1,6 @@
 module fi.tuni.prog3.sisu {
     requires javafx.controls;
+    requires org.controlsfx.controls;
     requires transitive javafx.graphics;
     requires transitive javafx.fxml;
     requires transitive com.google.gson;
@@ -9,3 +10,7 @@ module fi.tuni.prog3.sisu {
     exports fi.tuni.prog3.sisu.backend;
     exports fi.tuni.prog3.sisu.api;
 }
+
+
+    
+

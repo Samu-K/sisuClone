@@ -22,35 +22,35 @@
           <HBox spacing="40">
             <VBox>
               <Label text="Etunimi" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
-              <Label text="Maija"/>
+              <TextField fx:id="firstNameLabel"/>
             </VBox>        
 
             <VBox>
               <Label text="Sukunimi" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
-              <Label text="Mallikas"/>
+              <TextField fx:id="lastNameLabel"/>
             </VBox>
           </HBox>
 
           <HBox spacing="40">
             <VBox>
               <Label text="Kieli" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
-              <Label text="Suomi"/>
+              <TextField fx:id="langLabel"/>
             </VBox>        
 
             <VBox>
               <Label text="Osoite" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
-              <Label text="Mallikatu 2"/>
+              <TextField fx:id="addressLabel"/>
             </VBox>
           </HBox>
 
           <VBox>
             <Label text="Opiskelijanumero" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
-            <Label text="120129301293"/>
+            <Label fx:id="numLabel"/>
           </VBox>
           
           <VBox>
             <Label text="Sähköposti" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
-            <Label text="esimerkki.osoite@maili.fi"/>
+            <TextField fx:id="mailLabel"/>
           </VBox>
         </VBox>
       </VBox>
@@ -59,22 +59,13 @@
           <Label text="Opintojen tila"/>
         </HBox>
 
-        <VBox spacing="30" fx:id="infoBox">
-          <VBox>
-            <Label text="Keskiarvo" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
-            <Label text="3.6"/>
-          </VBox>
-          
+        <VBox spacing="30" fx:id="infoBox">          
           <VBox>
             <Label text="Tutkinto-ohjelma" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
-            <Label text="Mallin koulutus"/>
+            <Label text="" fx:id="degreeLabel"/>
           </VBox>
         </VBox>
       </VBox>
     </HBox>
   </center>
-
-  <left>
-    <fx:include source="sidebar.fxml"/>
-  </left>
 </BorderPane>
