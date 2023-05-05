@@ -39,7 +39,6 @@ public class LandingController {
     try {
       readFile();
     } catch (IOException e) {
-      System.out.println("ID file not found");
     }
     
     firstNameLabel.setText(userInfo.get("name"));

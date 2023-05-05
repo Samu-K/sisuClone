@@ -38,10 +38,7 @@ public class DegreeProgrammeGetter {
       String id = searchResultObject.get("groupId").getAsString();
       degreeProgrammes.put(name, id);
     }
-
-    //THIS IS FOR TESTING PURPOSES
-    System.out.println("DegreeProgrammes: " + degreeProgrammes.toString());
-
+    
     return degreeProgrammes;
   }
 }

@@ -51,7 +51,6 @@ public class ModuleChildrenGetter {
       // Recursively process subrules until a ModuleRule or CourseUnitRule is found.
       case "CourseUnitCountRule":
         subRules = rule.getAsJsonArray("rules");
-        System.out.println("subRules is an Array: " + subRules.isJsonArray());
         for (JsonElement subRuleElement : subRules) {
           JsonObject subRule = subRuleElement.getAsJsonObject();
           processRule(subRule, childrenIds);

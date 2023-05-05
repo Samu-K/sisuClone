@@ -14,9 +14,7 @@ public class StudyModule extends DegreeModule {
   private boolean childrenHaveBeenAdded = false;
 
   private void getChildrenFromApi() {
-    System.out.println("Getting children for " + getName() + "id: " + getId());
     if (!childrenHaveBeenAdded) {
-      System.out.println("Building all children of " + getName() + "id: " + getId());
       childModules = new ArrayList<DegreeModule>();
       for (String childGroupId : childGroupIds) {
         DegreeModule childModule = ObjectBuilders.buildCourseOrStudyModule(childGroupId);

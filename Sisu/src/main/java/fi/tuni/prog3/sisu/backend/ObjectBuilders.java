@@ -123,11 +123,7 @@ public class ObjectBuilders {
       if (creditsObject.has("min")) {
         JsonElement minCreditsElement = creditsObject.get("min");
         minCredits = minCreditsElement.getAsInt();
-      } else {
-        System.out.println("No min credits found");
       }
-    } else {
-      System.out.println("No credits object found");
     }
     return minCredits;
   }
