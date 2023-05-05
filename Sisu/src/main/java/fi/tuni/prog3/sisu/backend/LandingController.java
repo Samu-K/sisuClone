@@ -1,16 +1,15 @@
 package fi.tuni.prog3.sisu.backend;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-
-import java.util.Map;
-import java.util.HashMap;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
-import java.io.IOException;
+import java.util.Map;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * Controller class for landing.fxml.
@@ -32,6 +31,9 @@ public class LandingController {
     this.id = id;
   }
 
+  /**
+   * Initializes the controller class.
+   */
   @FXML
   public void initialize() {
     try {

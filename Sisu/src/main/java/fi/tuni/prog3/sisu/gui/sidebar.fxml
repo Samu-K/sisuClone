@@ -27,13 +27,15 @@
         prefHeight="55"
         stylesheets="file:src/resources/css/sideBarButton.css"/>
 
-      <Button text="Aikataulu" 
+      <Button text="Poista tutkinnon valinta" 
+        onAction="#removeDegree"
         maxWidth="1.7976931348623157E308" 
         prefHeight="55"
         stylesheets="file:src/resources/css/sideBarButton.css"/>
     </VBox>
 
     <Button text="Kirjaudu ulos" 
+      onAction="#logOut"
       StackPane.alignment="BOTTOM_CENTER" 
       maxWidth="1.7976931348623157E308" 
       prefHeight="55"

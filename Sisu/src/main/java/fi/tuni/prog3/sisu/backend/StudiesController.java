@@ -2,6 +2,7 @@ package fi.tuni.prog3.sisu.backend;
 
 import fi.tuni.prog3.sisu.api.Interface;
 import fi.tuni.prog3.sisu.backend.AutoCompleteComboBox.HideableItem;
+import fi.tuni.prog3.sisu.backend.StudiesController;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import javafx.application.Platform;
@@ -78,6 +79,9 @@ public class StudiesController {
               // save the chosen degree to selectedDegree
               String degreeName = selectedValue.toString();
               String degreeId = degreeProgrammes.get(degreeName);
+
+              degreeDropDown.setPromptText("Getting courses, please wait...");
+
               selectedDegree = (StudyModule) ObjectBuilders.buildCourseOrStudyModule(degreeId);
               
               showCourseTree();
@@ -95,19 +99,24 @@ public class StudiesController {
 
   private void showCourseTree() {
 
+    Label degreeLabel = new Label();
+    degreeLabel.setText(selectedDegree.getName());
+
+    courseBox.getChildren().clear();
+    courseBox.getChildren().add(0, degreeLabel);
+
     // create our course tree based on the degree selected
     if (courseTreeObject == null) {
+
       courseTreeObject = CourseTreeView.createCourseTree(selectedDegree);
     }
 
-    // remove the combobox
-    courseBox.getChildren().clear();
     courseBox.getChildren().add(courseTreeObject);
-    Label degree = new Label(selectedDegree.getName());
-    degree.setStyle("-fx-font-size:18;"
+
+    degreeLabel.setStyle("-fx-font-size:18;"
             + "-fx-text-fill:white;"
             + "-fx-padding: 25 0 0 25;");
-    courseBox.getChildren().add(0, degree);
+    
   }
   
   /**
@@ -157,6 +166,14 @@ public class StudiesController {
     degreeProgrammes.clear();
     return groupId;
   }
+
+
+  /**
+   * Restores the set degreeProgrammes to null. Used when the user wants to choose a new degree
+   * programme.
+   */
+  public static void resetSelectedProgramme() {
+    selectedDegree = null;
+    courseTreeObject = null;
+  }
 }
-
-

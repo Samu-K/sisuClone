@@ -77,7 +77,16 @@ public class AutoCompleteComboBox {
     }
   }
 
-  public static <T> ComboBox<HideableItem<T>> createComboBoxWithAutoCompletionSupport(List<T> items, StringConverter converter) {
+  /**
+   * Creates a new instance of AutoCompleteComboBox.
+
+   * @param <T> The type of the objects in the ComboBox's items list.
+   * @param items The items to display in the ComboBox.
+   * @param converter The StringConverter used to convert the items to strings.
+   * @return The AutoCompleteComboBox.
+   */
+  public static <T> ComboBox<HideableItem<T>>
+      createComboBoxWithAutoCompletionSupport(List<T> items, StringConverter converter) {
     ObservableList<HideableItem<T>> hideableHideableItems = FXCollections.observableArrayList(
         hideableItem -> new Observable[] {
           hideableItem.hiddenProperty()
@@ -121,7 +130,8 @@ public class AutoCompleteComboBox {
         (ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
         if (newValue) {
           @SuppressWarnings("unchecked")
-          ListView<HideableItem> lv = (ListView<HideableItem>) ((ComboBoxListViewSkin<?>) comboBox.getSkin()).getPopupContent();
+          ListView<HideableItem> lv = (ListView<HideableItem>) ((ComboBoxListViewSkin<?>)
+              comboBox.getSkin()).getPopupContent();
 
           Platform.runLater(() -> {
             if (selectedItem[0] == null) {
@@ -153,12 +163,14 @@ public class AutoCompleteComboBox {
       }
     });
     comboBox.valueProperty().addListener((
-          ObservableValue<? extends HideableItem<T>> obs, HideableItem<T> oldValue, HideableItem<T> newValue) -> {
-          if (newValue == null) {
-            for (HideableItem item : hideableHideableItems) {
-              item.setHidden(false);
-            }
-          }
+        ObservableValue<? extends HideableItem<T>> obs,
+        HideableItem<T> oldValue,
+        HideableItem<T> newValue) -> {
+      if (newValue == null) {
+        for (HideableItem item : hideableHideableItems) {
+          item.setHidden(false);
+        }
+      }
     });
 
     comboBox.getEditor().textProperty().addListener((
