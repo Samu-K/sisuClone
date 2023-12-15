@@ -19,3 +19,11 @@ Each merge request gets built. If the code does not compile, or does not pass te
 On top of this, each merge request gets checked with checkstyle. If any stylistic errors rise up, the merge gets rejected.
 
 **CI/CD is currently not working, due to there being no assigned runners. Course staff have been contacted about this**
+
+## Project info
+ Other contributors
+  Eemil Heikkilä
+  Veikka Liukkonen
+
+ This is a school project, where the aim was to create an app to plan one's studies. The structure was to be similar to Sisu, and uses it's API for implementation.
+ 
