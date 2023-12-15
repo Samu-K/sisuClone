@@ -1,8 +1,3 @@
-# Ohjelmointi 3 projektin tietovarasto
-
- Liitä harjoitustyön materiaalien etätietovarasto (https://course-gitlab.tuni.fi/compcs140-spring2023/group_template_project)
-paikalliseen tietovarastoosi remoteksi, jotta voit ladata kurssin tarjoamaa materiaalia.
-
 # Instructions for development
 
 ## Style guide
